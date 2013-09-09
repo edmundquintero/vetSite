@@ -15,10 +15,50 @@ app.use(express.bodyParser());
 
 // Routing
 app.get('/', function(req, res) {
-   res.render('index');
+   res.render('index',{
+   					home:"active",
+					sidebar:[
+						{ name:"food1", title:"" },
+						{ name:"food2", title:"" },
+						{ name:"food3", title:"" }]
+					});
 });
-
-
+app.get('/services', function(req, res) {
+   res.render('services',{
+   					services:"active",
+					sidebar:[
+						{ name:"service1", title:"service1" },
+						{ name:"service2", title:"service2" },
+						{ name:"service3", title:"service3" }]
+					});
+});
+app.get('/products', function(req, res) {
+   res.render('products',{
+   					products:"active",
+					sidebar:[
+						{ name:"product1", title:"product1" },
+						{ name:"product2", title:"product2" },
+						{ name:"product3", title:"product3" }]
+					});
+});
+app.get('/whoweare', function(req, res) {
+   res.render('whoweare',{
+   					whoweare:"active",
+					sidebar:[
+						{ name:"profile1", title:"profile1" },
+						{ name:"profile2", title:"profile2" },
+						{ name:"profile3", title:"profile3" }]
+					});
+});
+app.get('/contact', function(req, res) {
+   res.render('contact',{
+   					contact:"active",
+					sidebar:[
+						{ name:"info1", title:"info1" },
+						{ name:"info2", title:"info2" },
+						{ name:"info3", title:"info3" }]
+					});
+});
 
 // Start Server
 app.listen(3000);

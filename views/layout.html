@@ -41,11 +41,11 @@
             <!-- Navbar links -->
             <div class="nav-collapse collapse">
               <ul class="nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="#">Services</a></li>
-                <li><a href="#">Products</a></li>
-                <li><a href="#">Who We Are</a></li>
-                <li><a href="#">Contact Us</a></li>
+                <li class="{{home}}"><a href="/">Home</a></li>
+                <li class="{{services}}"><a href="/services">Services</a></li>
+                <li class="{{products}}"><a href="/products">Products</a></li>
+                <li class="{{whoweare}}"><a href="/whoweare">Who We Are</a></li>
+                <li class="{{contact}}"><a href="/contact">Contact Us</a></li>
               </ul>
               <!-- Login navigation -->
               <ul class="nav pull-right">
@@ -59,7 +59,35 @@
   </div> <!-- /navbar -->
 </header>
 
-  {{{body}}}
+
+<div id="site-content" class="container">
+  <div class="row-fluid">
+
+    <!-- SideBar -->
+    <div class="span3" id="side-bar">
+
+    <div class="row-fluid">
+      <div class="span12">
+      <h1>Sidebar</h1>
+        <p class="desc">Selectable items pertaining to the navigation link selected. For example if the Products navigation link is selected items here would be Dogfood, Flea and Tick, Catfood, Medication..</p>
+      </div>
+    </div>
+    <!-- Theme pallet -->
+    {{#each sidebar}}
+    <div class="row-fluid">
+      <div class="subnav-item span10" id="sub-{{name}}">{{title}}</div>
+    </div>
+    {{/each}}
+    <!-- end Theme pallet -->
+
+  </div> 
+  <!-- End Sidebar -->
+  <!-- Main Content -->
+    {{{body}}}
+  <!-- End Main Content -->
+  </div>
+</div>
+<!-- End Content -->
   
 <footer class="navbar navbar-fixed-bottom">
   <div class="navbar-inner footer">
