@@ -1,4 +1,6 @@
 var express = require('express');
+var VetSiteDb = require('./static/js/mongo').VetSiteDb;
+
 var app = express();
 
 // include handelbars for templating
@@ -12,20 +14,28 @@ app.set('view engine', 'html');
 app.engine('html', hbs.__express);
 app.use(express.bodyParser());
 
+// start DB
+var vetSiteDb = new VetSiteDb('localhost', 27017);
+
+vetSiteDb.testdata();
 
 // Routing
 app.get('/', function(req, res) {
-   res.render('index',{
-   					home:"active",
-					sidebar:[
-						{ name:"food1", title:"" },
-						{ name:"food2", title:"" },
-						{ name:"food3", title:"" }]
-					});
+  res.render('index',{
+      home:"active",
+      sidebar: []
+    });
+  // vetSiteDb.getAllProducts( function(error,docs){
+  //   res.render('index',{
+  //  		home:"active",
+  // 		sidebar: docs
+  //   });
+  // });
 });
+
 app.get('/services', function(req, res) {
    res.render('services',{
-   					services:"active",
+   				services:"active",
 					sidebar:[
 						{ name:"service1", title:"service1" },
 						{ name:"service2", title:"service2" },
@@ -34,7 +44,7 @@ app.get('/services', function(req, res) {
 });
 app.get('/products', function(req, res) {
    res.render('products',{
-   					products:"active",
+   				products:"active",
 					sidebar:[
 						{ name:"product1", title:"product1" },
 						{ name:"product2", title:"product2" },
@@ -43,7 +53,7 @@ app.get('/products', function(req, res) {
 });
 app.get('/whoweare', function(req, res) {
    res.render('whoweare',{
-   					whoweare:"active",
+   				whoweare:"active",
 					sidebar:[
 						{ name:"profile1", title:"profile1" },
 						{ name:"profile2", title:"profile2" },
@@ -61,4 +71,4 @@ app.get('/contact', function(req, res) {
 });
 
 // Start Server
-app.listen(3000);
+app.listen(3001);
