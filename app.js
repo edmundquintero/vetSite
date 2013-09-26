@@ -21,16 +21,16 @@ vetSiteDb.testdata();
 
 // Routing
 app.get('/', function(req, res) {
-  res.render('index',{
-      home:"active",
-      sidebar: []
-    });
-  // vetSiteDb.getAllProducts( function(error,docs){
-  //   res.render('index',{
-  //  		home:"active",
-  // 		sidebar: docs
+  // res.render('index',{
+  //     home:"active",
+  //     sidebar: []
   //   });
-  // });
+  vetSiteDb.getAllProducts( function(error,docs){
+    res.render('index',{
+   		home:"active",
+  		sidebar: docs
+    });
+  });
 });
 
 app.get('/services', function(req, res) {
@@ -43,13 +43,12 @@ app.get('/services', function(req, res) {
 					});
 });
 app.get('/products', function(req, res) {
-   res.render('products',{
-   				products:"active",
-					sidebar:[
-						{ name:"product1", title:"product1" },
-						{ name:"product2", title:"product2" },
-						{ name:"product3", title:"product3" }]
-					});
+	vetSiteDb.getAllProducts( function(error,products){
+   		res.render('products',{
+   			products:"active",
+				sidebar: products
+				});
+   	});
 });
 app.get('/whoweare', function(req, res) {
    res.render('whoweare',{
