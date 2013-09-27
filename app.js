@@ -21,15 +21,12 @@ vetSiteDb.testdata();
 
 // Routing
 app.get('/', function(req, res) {
-  // res.render('index',{
-  //     home:"active",
-  //     sidebar: []
-  //   });
-  vetSiteDb.getAllProducts( function(error,docs){
-    res.render('index',{
-   		home:"active",
-  		sidebar: docs
-    });
+  res.render('index',{
+ 		home:"active",
+		sidebar:[
+          { name:"food1", title:"" },
+          { name:"food2", title:"" },
+          { name:"food3", title:"" }]
   });
 });
 
@@ -42,14 +39,29 @@ app.get('/services', function(req, res) {
 						{ name:"service3", title:"service3" }]
 					});
 });
-app.get('/products', function(req, res) {
-	vetSiteDb.getAllProducts( function(error,products){
-   		res.render('products',{
-   			products:"active",
-				sidebar: products
-				});
-   	});
+// ------------------------------------
+app.get('/product/:id', function(req, res) {
+  var contents = { products:"active" };
+  vetSiteDb.getProductList( function(error,products){
+        contents.sidebar = products;
+        vetSiteDb.getProduct(req.params.id, function(error,product){
+          contents.returnItem = product;
+          res.render('products', contents);
+        });
+  });
 });
+app.get('/product', function(req, res) {
+  var contents = { products:"active" };
+	vetSiteDb.getProductList( function(error,products){
+				contents.sidebar = products;
+        vetSiteDb.getProduct(products[0]._id, function(error,product){
+          contents.returnItem = product;
+          res.render('products', contents);
+        });
+	});
+});
+// ---------------------------
+
 app.get('/whoweare', function(req, res) {
    res.render('whoweare',{
    				whoweare:"active",
