@@ -29,6 +29,14 @@ a{
 .primary-4 { background-color: #7F9EE7 }
 .primary-5 { background-color: #BBC8E7 }
 
+img.console, img.browser{
+  border: 1px solid #000;
+  border-radius: 5px;
+  box-shadow: 0px 0px 7px 0px #000;
+}
+img.browser{
+  box-shadow:0px 0px 5px 0px #333;
+}
 
 
   /*Sidebar*/
