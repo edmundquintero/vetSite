@@ -105,10 +105,39 @@
         </div>
       </div>
       <div class="row-fluid">
+        <h5>Raw code</h5>
+        <div class="span10">
+          <pre>
+            var server = require("./server"); 
+            var router = require("./router");
+
+            server.start(router.route);
+          </pre>
+        </div>
+      </div>
+      <div class="row-fluid">
         <div class="span12">
           <a id="router"></a>
           <h4>Router.js</h4>
           <img src="./img/node-route.png" alt="route.js for node app">
+        </div>
+      </div>
+      <div class="row-fluid">
+        <h5>Raw code</h5>
+        <div class="span10">
+          <pre>
+            /** 
+            The route function takes 1 parameter "pathname".
+            pathname is the url in the HTTP request passed in 
+            from the sart function in server.js
+            **/
+            function route(pathname) {
+            // logs the current URL
+            console.log("About to route a request for " + pathname);
+            }
+            // export the function for modular use
+            exports.route = route;
+          </pre>
         </div>
       </div>
       <div class="row-fluid">
@@ -118,7 +147,49 @@
           <img src="./img/node-server.png" alt="server.js for node app">
         </div>
       </div>
+      <div class="row-fluid">
+        <h5>Raw code</h5>
+        <div class="span10">
+          <pre>
+            /** Import modular functions that are packaged with Node
 
+            http is needed to instanciate the web server.
+            url is needed to parse the incoming string when a 
+            request is made to the server.
+            **/
+            var http = require("http");
+            var url = require("url");
+
+
+            // function used to start the server and listen for requests.
+            function start(route) {
+
+            /* onRequest is a function that calls the router 
+            based on the incoming request.
+            */
+            function onRequest(request, response) {
+
+            // Determine the path from the url in the request
+            var pathname = url.parse(request.url).pathname;
+            console.log("Request for " + pathname + " received.");
+
+            //Pass the path to the router.
+            route(pathname);
+
+            // Write the response back to the page.
+            response.writeHead(200, {"Content-Type": "text/plain"});
+            response.write("Hello World");
+            response.end();
+            }
+            // Create the server and have it listen for requests on port :8888
+            http.createServer(onRequest).listen(8888);
+            console.log("Server has started.");
+            }
+            // export the start function for modular use
+            exports.start = start;
+          </pre>
+        </div>
+      </div>
 
 
       </div>
