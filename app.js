@@ -16,7 +16,8 @@ app.use(express.bodyParser());
 
 // start DB
 var vetSiteDb = new VetSiteDb('localhost', 27017);
-
+vetSiteDb.addProviders();
+//Load test data
 vetSiteDb.testdata();
 
 // Routing
@@ -29,17 +30,28 @@ app.get('/', function(req, res) {
           { name:"food3", title:"" }]
   });
 });
-
-app.get('/services', function(req, res) {
-   res.render('services',{
-   				services:"active",
-					sidebar:[
-						{ name:"service1", title:"service1" },
-						{ name:"service2", title:"service2" },
-						{ name:"service3", title:"service3" }]
-					});
+// Service Rout ----
+app.get('/service/:id', function(req, res) {
+  var contents = { services:"active" };
+  vetSiteDb.getServiceList( function(error,services){
+        contents.sidebar = services;
+        vetSiteDb.getService(req.params.id, function(error,service){
+          contents.returnItem = service;
+          res.render('services', contents);
+        });
+  });
 });
-// ------------------------------------
+app.get('/service', function(req, res) {
+  var contents = { services:"active" };
+  vetSiteDb.getServiceList( function(error,services){
+        contents.sidebar = services;
+        vetSiteDb.getService(services[0]._id, function(error,service){
+          contents.returnItem = service;
+          res.render('services', contents);
+        });
+  });
+});
+// Product rout ----
 app.get('/product/:id', function(req, res) {
   var contents = { products:"active" };
   vetSiteDb.getProductList( function(error,products){
