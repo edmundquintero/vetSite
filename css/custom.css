@@ -84,3 +84,106 @@ p.desc{
     border-right: none;
   }
 }
+
+
+/* -- #logo styles -- */
+#logo{
+  position: absolute;
+  top: 250px;
+  margin-top: 7px;
+  width: 150px;
+  height: 150px;
+  background-color: #FFF;
+  border-radius: 100%;
+  box-shadow:
+  inset -3px -3px 5px 3px  rgba(0, 0, 0, .2) ,
+  inset 4px 7px 2px 0 rgba(255, 255, 255, .4) ,
+  inset 0 0 0 8px  #888,
+  inset -1px -1px 1px 9px #FFF,
+  inset 0 0 1px 10px  #DDD,
+
+  inset -4px -7px 2px 9px  rgba(255, 255, 255, .2),
+  inset 0 0 0 18px  #888,
+  inset 2px 2px 5px 21px  rgba(0, 0, 0, .7),
+
+  inset 0 0 0 70px #fff,
+  
+  2px 2px 5px 3px rgba(0, 0, 0, .7),
+  0px 0px 1px 0px #FFF, 
+  0px 0px 2px 1px rgba(0, 0, 0, .2); 
+}
+
+#logo:after{
+  content:'';
+  position: absolute;
+  top: -30px;
+  left: 65px;
+  margin-top: 7px;
+  width: 20px;
+  height: 75px;
+  background-color: #FFF;
+  border-radius: 5px;
+  box-shadow:
+  inset -3px -3px 5px 3px  rgba(0, 0, 0, .2) ,
+  inset 4px 7px 2px 0 rgba(255, 255, 255, .4) ,
+  inset 0 0 0 8px  #888,
+  inset -1px -1px 1px 9px #FFF,
+  inset 0 0 1px 10px  #DDD,
+
+  inset -4px -7px 2px 9px  rgba(255, 255, 255, .2),
+  inset 0 0 0 18px  #888,
+  inset 2px 2px 5px 21px  rgba(0, 0, 0, .7),
+
+  inset 0 0 0 70px #fff,
+  
+  2px 2px 2px 0px rgba(0, 0, 0, .7),
+  0px 0px 1px 0px #FFF;
+
+}
+
+#logo:before{
+  content:'';
+  position: absolute;
+  top: -30px;
+  left: 65px;
+  margin-top: 7px;
+  width: 75px;
+  height: 20px;
+  background-color: #FFF;
+  border-radius: 5px;
+  box-shadow:
+  inset -3px -3px 5px 3px  rgba(0, 0, 0, .2) ,
+  inset 4px 7px 2px 0 rgba(255, 255, 255, .4) ,
+  inset 0 0 0 8px  #888,
+  inset -1px -1px 1px 9px #FFF,
+  inset 0 0 1px 10px  #DDD,
+
+  inset -4px -7px 2px 9px  rgba(255, 255, 255, .2),
+  inset 0 0 0 18px  #888,
+  inset 2px 2px 5px 21px  rgba(0, 0, 0, .7),
+
+  inset 0 0 0 70px #fff,
+  
+  2px 2px 2px 0px rgba(0, 0, 0, .7),
+  0px 0px 1px 0px #FFF;
+
+}
+
+
+
+/*#logo:after{content:'';
+  position:absolute;
+  margin:auto;
+  top:-110px; 
+  bottom:0; 
+  right:0; 
+  left:0; 
+  width:5px;
+  height:100px; 
+  z-index:9;
+  -webkit-transform: rotate(45deg) skew(15deg, 15deg);
+  box-shadow:
+   inset 1px 1px 5px 0px #333,
+   10px 2px 1px 0px #888
+   ;
+}*/

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  <link rel="stylesheet" type="text/css" href="css/vendor/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="css/vendor/bootstrap-responsive.min.css">
+  <link rel="stylesheet" type="text/css" href="css/custom.css">
+  
+  <script type="text/javascript" src="js/vendor/jquery-1.10.2.min.js"></script>
+  <script type="text/javascript" src="js/vendor/bootstrap.min.js"></script>
+  <script type="text/javascript" src="js/vendor/angular.min.js"></script>
+  <title>TOC</title>
+
+  <script>
+  /**
+    Affix menu scroller
+    v1.0.2
+    Author: Edmund Quintero
+  **/
+    $(document).scroll(function(){
+        if($(window).scrollTop() <= 150){
+            $(".app-nav").removeClass('navbar-fixed-top').addClass('navbar-static-top');
+            $(".app-nav").css('top', '0px');
+
+        }
+        else if( $(window).scrollTop() > 150 ){
+            $(".app-nav").removeClass('navbar-static-top').addClass('navbar-fixed-top');
+            if ($(".app-nav").css('position') === 'fixed'){
+                $(".app-nav").css({'top': '0px'});
+            }
+        } 
+    });
+  </script>
+
+</head>
+<body>
+
+<header>
+
+<div class="hero-unit visible-desktop">
+  <div class="container">
+    <h1>WEB 215</h1>
+    <p>Advanced Markup and Scripting</p>
+  </div>
+</div>
+
+  <div class="navbar navbar-static-top navbar-inverse app-nav">
+    <div class="navbar-inner">
+      <div class="container">
+        <div class="row-fluid">
+          <div class="span10 offset2">
+            <!-- Mobile menu button -->
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </a>
+            <!-- Brand (Mobile only)-->
+            <a class="brand hidden-desktop" href="#">Name</a>
+            <!-- Navbar links -->
+            <div class="nav-collapse collapse">
+              <ul class="nav">
+                <li class="active"><a href="#">Home</a></li>
+                <li><a href="#module1">Module 1</a></li>
+                <li><a href="#module2">Module 2</a></li>
+                <li><a href="#module3">Module 3</a></li>
+                <li><a href="#module4">Module 4</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div> <!-- /container -->
+    </div> <!-- /navbar-inner -->
+  </div> <!-- /navbar -->
+</header>
+
+<div id="site-content" class="container">
+  <div class="row-fluid">
+
+    <!-- Main Content -->
+    <div class="span12" id="main-content">
+      <div class="row-fluid">
+        <h1>Table Of Contents</h1>
+      </div>
+      <hr />
+      <div class="row-fluid">
+        <div class="span12">
+          <a id="module1"></a>
+          <h3>Module 1</h3>
+          <ul>
+            <li>
+              <a href="http://students.cpcc.edu/~equinte0/WEB%20215/vetSite/">Your own brand</a>
+            </li>
+            <li>
+              <a href="http://moodle.cpcc.edu/mod/forum/discuss.php?d=245052">Console Play (linked to forum)</a>
+            </li>
+            <li>
+              <a href="http://moodle.cpcc.edu/mod/forum/discuss.php?d=245196">Generate Quiz Questions</a>
+            </li>
+            <li>
+              <a href="http://students.cpcc.edu/~equinte0/WEB%20215/vetSite/">Using Sprites</a>
+            </li>
+            <li>
+              <a href="http://www.codecademy.com/equintero">Codecademy Status</a>
+            </li>
+          </ul>
+          
+        </div>
+      </div>
+      
+      <div class="row-fluid">
+        <div class="span12">
+          <a id="module2"></a>
+          <h3>Module 2</h3>
+          <ul>
+            <li>
+              <a href="http://moodle.cpcc.edu/mod/forum/discuss.php?d=247164">Sample JS Stack</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="row-fluid">
+        <div class="span12">
+          <a id="module3"></a>
+          <h3>Module 3</h3>
+          <ul>
+            <li>
+              <a href="">One Div Graphic</a>
+            </li>
+            <li>
+              <a href="">Quiz Questions 4-5</a>
+            </li>
+            <li>
+              <a href="">Quiz Questions 6-7</a>
+            </li>
+            <li>
+              <a href="http://students.cpcc.edu/~equinte0/web%20215/vetSite/node.html">Node Tutorial</a>
+            </li>
+            <li>
+              <a href="http://students.cpcc.edu/~equinte0/web%20215/vetSite/mongo.html">Mongo Tutorial</a>
+            </li>
+            <li>
+              <a href="http://www.codecademy.com/equintero">Codecademy Status</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  <!-- End Main Content -->
+  </div>
+</div>
+<!-- End Content -->
+<footer class="navbar navbar-fixed-bottom">
+  <div class="navbar-inner footer">
+    <ul class="nav pull-right">
+      <li>
+        <a href="http://jigsaw.w3.org/css-validator/validator?uri=http%3A%2F%2Fstudents.cpcc.edu%2F%7Eequinte0%2FWEB215%2FvetSite%2Fcss%2Fcustom.css&amp;profile=css3&amp;usermedium=all&amp;warning=1&amp;vextwarning=">
+          <img src="img/valid_css3.gif" alt="Valid CSS!" />
+        </a>
+      </li>
+      <li>
+        <a href="http://validator.w3.org/check?uri=referer">
+          <img src="img/valid_html5.gif"  alt="Valid HTML 5"/>
+        </a>
+      </li>
+    </ul>
+  </div>
+</footer>
+
+</body>
+
+</html>
