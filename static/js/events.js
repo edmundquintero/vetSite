@@ -1,11 +1,15 @@
 $(function(){
 
   $('.deleter').click(function(){
+    var id = $(this).attr('ref');
       $.ajax({
-        url: '/product/527c7c7ab1037c68bb000007',
+        url: '/product/'+id,
         type: 'DELETE',
         success: function(result) {
-        // Do something with the result
+          console.log(result);
+          var hook = '#'+id;
+          console.log($(hook));
+          $(hook).hide();
         }
       });
   });

@@ -86,14 +86,14 @@ app.post('/product', function(req, res) {
                                 res.send(404);
                               }else{
                                 console.log("Added: "+records.name+" : "+records._id );
+                                res.redirect('/admin');
                               }
                             });
   });
 });
 app.delete('/product/:id', function (req, res) {
-
   vetSiteDb.deleteProduct(req.param('id'), function(error, object){
-    console.log(object);
+    res.send(200);
   });
 });
 
@@ -119,7 +119,11 @@ app.get('/contact', function(req, res) {
 					});
 });
 app.get('/admin', function(req, res) {
-   res.render('admin',{admin:"active"});
+  var contents = { admin:"active" };
+   vetSiteDb.getProductList( function(error,products){
+        contents.items = products;
+        res.render('admin', contents);
+  });
 });
 
 // Start Server
