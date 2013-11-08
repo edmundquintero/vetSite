@@ -1,5 +1,6 @@
 var express = require('express');
 var VetSiteDb = require('./static/js/mongo').VetSiteDb;
+var ObjectID = require('mongodb').ObjectID;
 
 var app = express();
 
@@ -73,7 +74,6 @@ app.get('/product', function(req, res) {
 	});
 });
 app.post('/product', function(req, res) {
-  console.log(req.body.name);
   var product = {
                 type: 'product',
                 name: req.body.name,
@@ -82,12 +82,20 @@ app.post('/product', function(req, res) {
                 };
   vetSiteDb.getProductsCollection(function(error, product_collection) {
     product_collection.save(product, function(err, records){
-                              console.log("Added: "+records.name);
+                              if(err){
+                                res.send(404);
+                              }else{
+                                console.log("Added: "+records.name+" : "+records._id );
+                              }
                             });
   });
-
 });
+app.delete('/product/:id', function (req, res) {
 
+  vetSiteDb.deleteProduct(req.param('id'), function(error, object){
+    console.log(object);
+  });
+});
 
 
 // ---------------------------

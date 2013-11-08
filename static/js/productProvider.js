@@ -45,6 +45,23 @@ ProductProvider = function(VetSiteDb){
     });
   };
 
+  VetSiteDb.prototype.deleteProduct = function(id, callback){
+    this.getProductsCollection(function(error, product_collection) {
+      if( error ){
+        callback(error);
+      }else{
+        if( typeof id != 'string'){id = id.toString();} //ObjectID only takes string as an argument
+        product_collection.remove({_id: ObjectID(id) }, function(error) {
+          if( error ){
+            callback(error);
+          }else{
+            callback(null);
+          }
+        });
+      }
+    });
+  };
+
 
 };
 
