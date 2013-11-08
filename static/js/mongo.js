@@ -23,40 +23,6 @@ VetSiteDb.prototype.addProviders = function(){
 
 VetSiteDb.prototype.testdata = function(){
 
-  this.getProductsCollection(function(error, product_collection) {
-
-    product_collection.remove();
-
-    product_collection.save(
-                            {type: 'product',
-                             name: 'food1',
-                             title: '',
-                             description: 'Dog food made for dogs! brand #1'
-                            },
-                            function(err, records){
-                              console.log("Added: "+records.name);
-    });
-    product_collection.save(
-                            {type: 'product',
-                             name: 'food2',
-                             title: '',
-                             description: 'Dog food made for dogs! brand #2'
-                            },
-                            function(err, records){
-                              console.log("Added: "+records.name);
-    });
-    product_collection.save(
-                            {type: 'product',
-                             name: 'food3',
-                             title: '',
-                             description: 'Dog food made for dogs! brand #3'
-                            },
-                            function(err, records){
-                              console.log("Added: "+records.name);
-    });
-
-  });
-
     this.getServiceCollection(function(error, service_collection) {
 
         service_collection.remove();

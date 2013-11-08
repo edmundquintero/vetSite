@@ -68,28 +68,34 @@
   <div class="row-fluid">
 
     <!-- SideBar -->
-    <div class="span3" id="side-bar">
+    {{#if sidebar}}
+      <div class="span3" id="side-bar">
 
-    <div class="row-fluid">
-      <div class="span12">
-      <h1>Sidebar</h1>
-        <p class="desc">Selectable items pertaining to the navigation link selected. For example if the Products navigation link is selected items here would be Dogfood, Flea and Tick, Catfood, Medication..</p>
+      <div class="row-fluid">
+        <div class="span12">
+        <h1>Sidebar</h1>
+          <p class="desc">Selectable items pertaining to the navigation link selected. For example if the Products navigation link is selected items here would be Dogfood, Flea and Tick, Catfood, Medication..</p>
+        </div>
       </div>
-    </div>
-    <!-- Theme pallet -->
-    {{#each sidebar}}
-    <div class="row-fluid">
-      <a href="/{{type}}/{{_id}}">
-        <div class="subnav-item span10" id="sub-{{name}}" data-object-id="{{_id}}">{{title}}</div>
-      </a>
-    </div>
-    {{/each}}
-    <!-- end Theme pallet -->
+      <!-- Theme pallet -->
+      {{#each sidebar}}
+      <div class="row-fluid">
+        <a class="subnav-item-link" href="/{{type}}/{{_id}}">
+          <div class="subnav-item span10 text-center" id="sub-{{name}}" data-object-id="{{_id}}"><b>{{name}}</b></div>
+        </a>
+      </div>
+      {{/each}}
+      <!-- end Theme pallet -->
 
-  </div> 
-  <!-- End Sidebar -->
-  <!-- Main Content -->
-    {{{body}}}
+    </div> 
+    <!-- End Sidebar -->
+    <div class="span9" id="main-content">
+  {{else}}
+    <div class="span12" id="main-content">
+  {{/if}}
+    <!-- Main Content -->
+      {{{body}}}
+    </div>
   <!-- End Main Content -->
   </div>
 </div>

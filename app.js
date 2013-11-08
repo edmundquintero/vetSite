@@ -24,11 +24,7 @@ vetSiteDb.testdata();
 // Routing
 app.get('/', function(req, res) {
   res.render('index',{
- 		home:"active",
-		sidebar:[
-          { name:"food1", title:"" },
-          { name:"food2", title:"" },
-          { name:"food3", title:"" }]
+ 		home:"active"
   });
 });
 // Service Rout ----
