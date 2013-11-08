@@ -72,6 +72,24 @@ app.get('/product', function(req, res) {
         });
 	});
 });
+app.post('/product', function(req, res) {
+  console.log(req.body.name);
+  var product = {
+                type: 'product',
+                name: req.body.name,
+                title: '',
+                description: req.body.description
+                };
+  vetSiteDb.getProductsCollection(function(error, product_collection) {
+    product_collection.save(product, function(err, records){
+                              console.log("Added: "+records.name);
+                            });
+  });
+
+});
+
+
+
 // ---------------------------
 
 app.get('/whoweare', function(req, res) {
@@ -85,12 +103,15 @@ app.get('/whoweare', function(req, res) {
 });
 app.get('/contact', function(req, res) {
    res.render('contact',{
-   					contact:"active",
+  				contact:"active",
 					sidebar:[
 						{ name:"info1", title:"info1" },
 						{ name:"info2", title:"info2" },
 						{ name:"info3", title:"info3" }]
 					});
+});
+app.get('/admin', function(req, res) {
+   res.render('admin',{admin:"active"});
 });
 
 // Start Server

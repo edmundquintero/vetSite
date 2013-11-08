@@ -1,0 +1,28 @@
+
+<div class="span9" id="main-content">
+  <div class="row-fluid">
+    <h1>Admin</h1>
+  </div>
+  <div class="row-fluid">
+    <div class="span12">
+      <h1></h1>
+      <p>{{ returnItem.description }}</p>
+      <form action="/product" method="post">
+        <legend>TEST Legend</legend>
+          <label>Name</label>
+          <input type="text" name="name" placeholder="New {{____}}">
+          <span class="help-block">Type the name of the {{_________}} here.</span>
+
+          <label>Description</label>
+          <textarea name="description" class ="span10" rows="10" placeholder="New {{____}} Description..."></textarea>
+          <span class="help-block">Add a {{____}} description here to be displayed.</span>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Save New {{_____}}</button>
+            <button type="cancel" class="btn">Cancel</button>
+          </div>
+      </form>
+    </div>
+  </div>
+</div>
+
