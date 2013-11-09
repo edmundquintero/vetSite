@@ -36,10 +36,13 @@
   <hr />
   <div class="row-fluid">
     <div class="span12">
-      <form action="/product" method="POST">
+      <div class="row-fluid">
+        <div class="span2"><button id="add-new" type="button" class="btn btn-primary">Add New</button></div>
+      </div>
+      <form id="new-product" action="/product" method="POST">
         <legend>Add new</legend>
           <label>Name</label>
-          <input type="text" name="name" placeholder="New Product">
+          <input type="text" name="name" placeholder="New Product" required>
           <span class="help-block">Type the name of the Product here.</span>
 
           <label>Description</label>
@@ -47,8 +50,8 @@
           <span class="help-block">Add a Product description here to be displayed.</span>
 
           <div class="form-actions">
-            <button type="submit" class="btn btn-primary">Save New Product</button>
-            <button type="button" class="btn">Cancel</button>
+            <button id="add-submit" type="submit" class="btn btn-success">Save New Product</button>
+            <button id="add-cancel" type="button" class="btn">Cancel</button>
           </div>
       </form>
     </div>

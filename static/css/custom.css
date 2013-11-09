@@ -44,18 +44,24 @@ p.desc{
   padding: 0 5px 0 0;
 }
 .subnav-item{
-  height: 35px;
+  background-color: #EEE;
   border-radius: 5px;
   margin: 0px auto 10px auto !important;
   float: none !important;
   width: 200px;
-  padding: 5px 0 0 0;
+  padding: 10px 0;
   box-shadow: inset 0px 0px 3px 0px #041438, 0px 0px 10px -1px #7F9EE7;
 }
 .subnav-item:hover{box-shadow: inset 0px 0px 3px 0px #041438, 0px 0px 10px -1px #CCC;}
 .subnav-item:active{box-shadow: inset 0px 0px 5px 0px #041438, 0px 0px 10px -1px #CCC;}
 .subnav-item-link{
   text-decoration: none!important;
+  font-size: 20px;
+  text-shadow: -1px -1px #DDD, 1px 1px #999;
+}
+
+form#new-product{
+  display: none;
 }
 /*#sub-food1, #sub-food2, #sub-food3{
   background: url('../img/logos.png') no-repeat #FFF;

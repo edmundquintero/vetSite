@@ -13,4 +13,18 @@ $(function(){
         }
       });
   });
+
+  $('#add-new').click(function(){
+    $('#new-product').slideDown();
+  });
+
+  $('#add-cancel').click(function(){
+    $('#new-product').slideUp();
+  });
+
+  // $('#add-submit').click(function(){
+  //   $('#new-product').slideUp();
+  // });
+
+
 });
