@@ -45,6 +45,42 @@ ProductProvider = function(VetSiteDb){
     });
   };
 
+  VetSiteDb.prototype.addProduct = function(newProduct, callback){
+    this.getProductsCollection(function(error, product_collection) {
+      product_collection.save(newProduct, function(err, record){
+        if(err){
+          callback(error);
+        }else{
+          callback(null, record);
+        }
+      });
+    });
+  };
+
+  VetSiteDb.prototype.updateProduct = function(id, newProduct, callback){
+    this.getProductsCollection(function(error, product_collection) {
+      if( error ){
+        callback(error);
+      }else{
+        if( typeof id != 'string'){id = id.toString();} //ObjectID only takes string as an argument
+        product_collection.find().toArray(function(error, results) {
+          if( error ){
+            callback(error);
+          }else{
+            product_collection.update(results[0], newProduct, function(error, result){
+              if(error){
+                callback(error);
+              }else{
+                callback(null, results);
+              }
+            });
+
+          }
+        });
+      }
+    });
+  };
+
   VetSiteDb.prototype.deleteProduct = function(id, callback){
     this.getProductsCollection(function(error, product_collection) {
       if( error ){
@@ -61,8 +97,6 @@ ProductProvider = function(VetSiteDb){
       }
     });
   };
-
-
 };
 
 exports.ProductProvider = ProductProvider;

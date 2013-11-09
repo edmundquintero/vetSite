@@ -49,6 +49,7 @@ app.get('/service', function(req, res) {
   });
 });
 // Product rout ----
+//Retrieve single
 app.get('/product/:id', function(req, res) {
   var contents = { products:"active" };
   vetSiteDb.getProductList( function(error,products){
@@ -61,6 +62,7 @@ app.get('/product/:id', function(req, res) {
         });
   });
 });
+// Retrieve List
 app.get('/product', function(req, res) {
   var contents = { products:"active" };
 	vetSiteDb.getProductList( function(error,products){
@@ -73,24 +75,43 @@ app.get('/product', function(req, res) {
         });
 	});
 });
-app.post('/product', function(req, res) {
-  var product = {
-                type: 'product',
-                name: req.body.name,
-                title: '',
-                description: req.body.description
-                };
-  vetSiteDb.getProductsCollection(function(error, product_collection) {
-    product_collection.save(product, function(err, records){
-                              if(err){
-                                res.send(404);
-                              }else{
-                                console.log("Added: "+records.name+" : "+records._id );
-                                res.redirect('/admin');
-                              }
-                            });
+// Update
+app.post('/product/:id', function(req, res) {
+  var product = {};
+  if(req.body.name){
+    product.name = req.body.name;
+  }
+  if(req.body.description){
+    product.description = req.body.description;
+  }
+  vetSiteDb.updateProduct(req.param('id'), product, function(error, results) {
+    if(error){
+      res.send(500);
+    }else{
+      res.send(200);
+    }
   });
 });
+// Create
+app.post('/product', function(req, res) {
+  var product = {};
+  if(req.body.name){
+    product.name = req.body.name;
+  }
+  if(req.body.description){
+    product.description = req.body.description;
+  }
+  product.type = 'product';
+  vetSiteDb.addProduct(product, function(error, record) {
+    if(error){
+      res.send(500);
+    }else{
+      console.log("Added: "+record.name+" : "+record._id );
+      res.redirect('/admin');
+    }
+  });
+});
+//Delete
 app.delete('/product/:id', function (req, res) {
   vetSiteDb.deleteProduct(req.param('id'), function(error, object){
     res.send(200);
