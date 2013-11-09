@@ -62,6 +62,15 @@ app.get('/product/:id', function(req, res) {
         });
   });
 });
+//Retrieve single API
+app.get('/api/product/:id', function(req, res) {
+  var contents = { products:"active" };
+  vetSiteDb.getProductList( function(error,products){
+        vetSiteDb.getProduct(req.params.id, function(error,product){
+          res.send(product);
+        });
+  });
+});
 // Retrieve List
 app.get('/product', function(req, res) {
   var contents = { products:"active" };

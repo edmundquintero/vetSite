@@ -18,7 +18,6 @@ $(function(){
     $('#new-product').slideDown(function(){
       window.scrollTo(0,document.body.scrollHeight);
     });
-
   });
 
   $('#add-cancel').click(function(){
@@ -26,7 +25,12 @@ $(function(){
   });
 
   $('.edit-product').click(function(){
+    var url = '/api/product/'+$(this).attr('ref');
     $('#product-table').slideUp(function(){
+       $.get(url, function(result){
+        $('#product-edit form input[name="name"]').val(result.name);
+        $('#product-edit form textarea[name="description"]').val(result.description);
+       });
       $('#product-edit').slideDown();
     });
   });
