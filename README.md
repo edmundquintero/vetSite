@@ -41,4 +41,4 @@ Follow the instructions to install Node here [Node.js](http://nodejs.org/)
 
 The application is now running on port 3001.  
 Open a browser and visit URL: `localhost:3001`  
-*Quick Link* - [localhost:3000](http://localhost:3001)
+*Quick Link* - [Your Machine](http://localhost:3001)
