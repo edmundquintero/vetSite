@@ -7,6 +7,8 @@ A web site for a small veterinary clinic.
   * Node  
   * Express  
   * Handelbars  
+  * Mongo DB  
+  * Jasmine  
 
 ---
 
@@ -37,6 +39,6 @@ Follow the instructions to install Node here [Node.js](http://nodejs.org/)
 5. Start the application.  
 `$node app.js`
 
-The application is now running on port 3000.  
-Open a browser and visit URL: `localhost:3000`  
-*Quick Link* - [localhost:3000](http://localhost:3000)
+The application is now running on port 3001.  
+Open a browser and visit URL: `localhost:3001`  
+*Quick Link* - [localhost:3000](http://localhost:3001)
