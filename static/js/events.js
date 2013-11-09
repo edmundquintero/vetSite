@@ -15,7 +15,10 @@ $(function(){
   });
 
   $('#add-new').click(function(){
-    $('#new-product').slideDown();
+    $('#new-product').slideDown(function(){
+      window.scrollTo(0,document.body.scrollHeight);
+    });
+
   });
 
   $('#add-cancel').click(function(){

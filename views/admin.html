@@ -19,9 +19,12 @@
         {{#if items}}
         {{#each items}}
           <tr id="{{_id}}">
-            <td>{{name}}</td>
-            <td>{{description}}</td>
-            <td><button class="btn btn-info btn-small disabled" ref="{{_id}}">EDIT</button><button class="btn btn-danger btn-small deleter pull-right" ref="{{_id}}">DELETE</button></td>
+            <td class="span2">{{name}}</td>
+            <td class="span8">{{description}}</td>
+            <td class="span2">
+              <button class="btn btn-primary btn-small disabled" ref="{{_id}}">EDIT </button>
+              <button class="btn btn-danger btn-small deleter pull-right" ref="{{_id}}">DELETE</button>
+            </td>
           </tr>
         {{/each}}
       {{else}}

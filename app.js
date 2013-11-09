@@ -53,6 +53,8 @@ app.get('/product/:id', function(req, res) {
   var contents = { products:"active" };
   vetSiteDb.getProductList( function(error,products){
         contents.sidebar = products;
+        contents.sideName = "Products";
+        contents.sideDescription = "Products available in the store.";
         vetSiteDb.getProduct(req.params.id, function(error,product){
           contents.returnItem = product;
           res.render('products', contents);
