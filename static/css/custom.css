@@ -66,6 +66,9 @@ form#new-product{
 #product-edit{
   display: none;
 }
+button#edit-hidden-submit{
+ display: none;
+}
 /*#sub-food1, #sub-food2, #sub-food3{
   background: url('../img/logos.png') no-repeat #FFF;
  }

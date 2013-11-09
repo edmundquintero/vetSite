@@ -93,11 +93,11 @@ app.post('/product/:id', function(req, res) {
   if(req.body.description){
     product.description = req.body.description;
   }
-  vetSiteDb.updateProduct(req.param('id'), product, function(error, results) {
+  vetSiteDb.updateProduct(req.param('id'), product, function(error) {
     if(error){
       res.send(500);
     }else{
-      res.send(200);
+      res.redirect('/admin');
     }
   });
 });

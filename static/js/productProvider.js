@@ -63,7 +63,7 @@ ProductProvider = function(VetSiteDb){
         callback(error);
       }else{
         if( typeof id != 'string'){id = id.toString();} //ObjectID only takes string as an argument
-        product_collection.find().toArray(function(error, results) {
+        product_collection.find({_id: ObjectID(id) }).toArray(function(error, results) {
           if( error ){
             callback(error);
           }else{
@@ -71,10 +71,9 @@ ProductProvider = function(VetSiteDb){
               if(error){
                 callback(error);
               }else{
-                callback(null, results);
+                callback(null, result);
               }
             });
-
           }
         });
       }

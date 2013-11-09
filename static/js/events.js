@@ -28,6 +28,7 @@ $(function(){
     var url = '/api/product/'+$(this).attr('ref');
     $('#product-table').slideUp(function(){
        $.get(url, function(result){
+        $('#product-edit form input[name="id"]').val(result._id);
         $('#product-edit form input[name="name"]').val(result.name);
         $('#product-edit form textarea[name="description"]').val(result.description);
        });
@@ -38,6 +39,15 @@ $(function(){
   $('#edit-cancel').click(function(){
     $('#product-edit').slideUp(function(){
       $('#product-table').slideDown();
+    });
+  });
+
+  $('#edit-submit').click(function(){
+    var url = '/product/' + $('#product-edit form input[name="id"]').val();
+    $('#product-edit form').attr('action', url);
+    $('#product-edit').slideUp(function(){
+      $('#product-table').slideDown();
+      $('#edit-hidden-submit').click();
     });
   });
 

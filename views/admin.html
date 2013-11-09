@@ -42,16 +42,18 @@
       <form id="edit-product" action="/product" method="POST">
         <legend>Edit existing</legend>
           <label>Name</label>
-          <input type="text" name="name" placeholder="New Product" required>
+          <input type="text" name="name" placeholder="Existing Product" required>
           <span class="help-block">Type the name of the Product here.</span>
 
           <label>Description</label>
-          <textarea name="description" class ="span10" rows="10" placeholder="New Product Description..."></textarea>
+          <textarea name="description" class ="span10" rows="10" placeholder="Change Product Description..."></textarea>
           <span class="help-block">Add a Product description here to be displayed.</span>
 
+          <input type="hidden" name="id" required>
           <div class="form-actions">
-            <button id="edit-submit" type="submit" class="btn btn-success">Save</button>
+            <button id="edit-submit" type="button" class="btn btn-success">Save</button>
             <button id="edit-cancel" type="button" class="btn">Cancel</button>
+            <button id="edit-hidden-submit" type="submit"></button>
           </div>
       </form>
     </div>
