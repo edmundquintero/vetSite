@@ -1,6 +1,6 @@
 $(function(){
 
-  $('.deleter').click(function(){
+  $('.delete-product').click(function(){
     var id = $(this).attr('ref');
       $.ajax({
         url: '/product/'+id,
@@ -25,9 +25,16 @@ $(function(){
     $('#new-product').slideUp();
   });
 
-  // $('#add-submit').click(function(){
-  //   $('#new-product').slideUp();
-  // });
+  $('.edit-product').click(function(){
+    $('#product-table').slideUp(function(){
+      $('#product-edit').slideDown();
+    });
+  });
 
+  $('#edit-cancel').click(function(){
+    $('#product-edit').slideUp(function(){
+      $('#product-table').slideDown();
+    });
+  });
 
 });

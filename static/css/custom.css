@@ -63,6 +63,9 @@ p.desc{
 form#new-product{
   display: none;
 }
+#product-edit{
+  display: none;
+}
 /*#sub-food1, #sub-food2, #sub-food3{
   background: url('../img/logos.png') no-repeat #FFF;
  }
