@@ -1,86 +1,93 @@
+<div class="row-fluid">
+  <div class="span12">
 
-  <div class="row-fluid">
-    <div class="span12">
-      <h3>Products</h3>
-    </div>
-  </div>
+    <div class="tabbable tabs-left">
 
-  <div class="row-fluid" id="product-table">
-    <table class="table table-striped table-bordered">
-      <thead>
-        <tr>
-          <td><b>Name</b></td>
-          <td><b>Description</b></td>
-          <td><b>Options</b></td>
-        </tr>
-      </thead>
+      <ul class="nav nav-tabs">
+        <li class="{{products}}"><a href="#product-tab" data-toggle="tab"><h4>Products</h4></a></li>
+        <li class="{{services}}"><a href="#tab2" data-toggle="tab"><h4><strike>Services</strike></h4></a></li>
+        <li class="{{profiles}}"><a href="#tab2" data-toggle="tab"><h4><strike>Profiles</strike></h4></a></li>
+      </ul>
 
-      <tbody>
-        {{#if items}}
-        {{#each items}}
-          <tr id="{{_id}}">
-            <td class="span2">{{name}}</td>
-            <td class="span8">{{description}}</td>
-            <td class="span2">
-              <button class="btn btn-primary btn-small edit-product" ref="{{_id}}">EDIT </button>
-              <button class="btn btn-danger btn-small delete-product pull-right" ref="{{_id}}">DELETE</button>
-            </td>
-          </tr>
-        {{/each}}
-      {{else}}
-        <tr>
-          <td>There are no Items to display.</td>
-        </tr>
-      {{/if}}
-      </tbody>
-    </table>
-  </div>
+      <div class="tab-content">
 
-  <!-- Product edit form -->
-  <div class="row-fluid" id="product-edit">
-    <div class="span12">
-      <form id="edit-product" action="/product" method="POST">
-        <legend>Edit existing</legend>
-          <label>Name</label>
-          <input type="text" name="name" placeholder="Existing Product" required>
-          <span class="help-block">Type the name of the Product here.</span>
+        <div class="row-fluid" id="item-table">
+          <table class="table table-striped table-bordered">
+            <thead>
+              <tr>
+                <td><b>Name</b></td>
+                <td><b>Description</b></td>
+                <td><b>Options</b></td>
+              </tr>
+            </thead>
 
-          <label>Description</label>
-          <textarea name="description" class ="span10" rows="10" placeholder="Change Product Description..."></textarea>
-          <span class="help-block">Add a Product description here to be displayed.</span>
+            <tbody>
+              {{#if items}}
+              {{#each items}}
+                <tr id="{{_id}}">
+                  <td class="span2">{{name}}</td>
+                  <td class="span8">{{description}}</td>
+                  <td class="span2">
+                    <button class="btn btn-primary btn-small edit-item" ref="{{type}}/{{_id}}">EDIT </button>
+                    <button class="btn btn-danger btn-small delete-item pull-right" ref="{{type}}/{{_id}}">DELETE</button>
+                  </td>
+                </tr>
+              {{/each}}
+            {{else}}
+              <tr>
+                <td>There are no Items to display.</td>
+              </tr>
+            {{/if}}
+            </tbody>
+          </table>
+        </div>
 
-          <input type="hidden" name="id" required>
-          <div class="form-actions">
-            <button id="edit-submit" type="button" class="btn btn-success">Save</button>
-            <button id="edit-cancel" type="button" class="btn">Cancel</button>
-            <button id="edit-hidden-submit" type="submit"></button>
+        <!-- Edit item form -->
+        <div class="row-fluid" id="product-edit">
+          <div class="span12">
+            <form id="edit-product" action="/product" method="POST">
+              <legend>Edit existing</legend>
+                <label>Name</label>
+                <input type="text" name="name" placeholder="Existing..." required>
+
+                <label>Description</label>
+                <textarea name="description" class ="span10" rows="10" placeholder="Change Description..."></textarea>
+                <span class="help-block">The description to be displayed.</span>
+
+                <input type="hidden" name="id" required>
+                <div class="form-actions">
+                  <button id="edit-submit" type="button" class="btn btn-success">Save</button>
+                  <button id="edit-cancel" type="button" class="btn">Cancel</button>
+                  <button id="edit-hidden-submit" type="submit"></button>
+                </div>
+            </form>
           </div>
-      </form>
-    </div>
-  </div>
+        </div>
 
-  <hr />
-  <!-- New Product form -->
-  <div class="row-fluid">
-    <div class="span12">
-      <div class="row-fluid">
-        <div class="span2"><button id="add-new" type="button" class="btn btn-primary">Add New</button></div>
-      </div>
-      <form id="new-product" action="/product" method="POST">
-        <legend>Add new</legend>
-          <label>Name</label>
-          <input type="text" name="name" placeholder="New Product" required>
-          <span class="help-block">Type the name of the Product here.</span>
+        <hr />
+        <!-- New Item form -->
+        <div class="row-fluid">
+          <div class="span12">
+            <div class="row-fluid">
+              <div class="span2 offset10"><button id="add-new" type="button" class="btn btn-primary">Add New</button></div>
+            </div>
+            <form id="new-product" action="/product" method="POST">
+              <legend>Add new</legend>
+                <label>Name</label>
+                <input type="text" name="name" placeholder="New..." required>
 
-          <label>Description</label>
-          <textarea name="description" class ="span10" rows="10" placeholder="New Product Description..."></textarea>
-          <span class="help-block">Add a Product description here to be displayed.</span>
+                <label>Description</label>
+                <textarea name="description" class ="span10" rows="10" placeholder="New Description..."></textarea>
+                <span class="help-block">Add a description here to be displayed.</span>
 
-          <div class="form-actions">
-            <button id="add-submit" type="submit" class="btn btn-success">Save New Product</button>
-            <button id="add-cancel" type="button" class="btn">Cancel</button>
+                <div class="form-actions">
+                  <button id="add-submit" type="submit" class="btn btn-success">Save New</button>
+                  <button id="add-cancel" type="button" class="btn">Cancel</button>
+                </div>
+            </form>
           </div>
-      </form>
-    </div>
-  </div>
-
+        </div>
+      </div> <!-- Tab Content -->
+    </div> <!--Tabbable -->
+  </div> <!-- span -->
+</div> <!-- row -->

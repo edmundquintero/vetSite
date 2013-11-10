@@ -124,7 +124,7 @@ app.post('/product', function(req, res) {
 //Delete
 app.delete('/product/:id', function (req, res) {
   vetSiteDb.deleteProduct(req.param('id'), function(error, object){
-    res.send(200);
+    res.send({ 'id': req.param('id')});
   });
 });
 
@@ -149,9 +149,13 @@ app.get('/contact', function(req, res) {
 					});
 });
 app.get('/admin', function(req, res) {
+  res.redirect('/admin/products');
+});
+app.get('/admin/:type', function(req, res) {
   var contents = { admin:"active" };
    vetSiteDb.getProductList( function(error,products){
         contents.items = products;
+        contents.products = "active";
         res.render('admin', contents);
   });
 });

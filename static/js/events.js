@@ -1,14 +1,11 @@
 $(function(){
 
-  $('.delete-product').click(function(){
-    var id = $(this).attr('ref');
+  $('.delete-item').click(function(){
       $.ajax({
-        url: '/product/'+id,
+        url: $(this).attr('ref'),
         type: 'DELETE',
         success: function(result) {
-          console.log(result);
-          var hook = '#'+id;
-          console.log($(hook));
+          var hook = '#'+result.id;
           $(hook).hide();
         }
       });
@@ -24,9 +21,9 @@ $(function(){
     $('#new-product').slideUp();
   });
 
-  $('.edit-product').click(function(){
-    var url = '/api/product/'+$(this).attr('ref');
-    $('#product-table').slideUp(function(){
+  $('.edit-item').click(function(){
+    var url = '/api/'+$(this).attr('ref');
+    $('#item-table').slideUp(function(){
        $.get(url, function(result){
         $('#product-edit form input[name="id"]').val(result._id);
         $('#product-edit form input[name="name"]').val(result.name);
@@ -38,7 +35,7 @@ $(function(){
 
   $('#edit-cancel').click(function(){
     $('#product-edit').slideUp(function(){
-      $('#product-table').slideDown();
+      $('#item-table').slideDown();
     });
   });
 
@@ -46,7 +43,7 @@ $(function(){
     var url = '/product/' + $('#product-edit form input[name="id"]').val();
     $('#product-edit form').attr('action', url);
     $('#product-edit').slideUp(function(){
-      $('#product-table').slideDown();
+      $('#item-table').slideDown();
       $('#edit-hidden-submit').click();
     });
   });

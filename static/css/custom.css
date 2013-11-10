@@ -34,14 +34,17 @@ a{
   /*Sidebar*/
 #side-bar{
   background: #BBC8E7;
-  padding: 3px;
+  padding: 20px 3px;
   border: 1px solid #7F9EE7;
   border-top: none;
   box-shadow: inset 0px -1px 5px -3px #17306A; 
-  border-radius: 0px 0px 5px 5px;
+  border-radius: 0px 0px 3px 3px;
+}
+#side-bar h1{
+  text-shadow: 2px 2px 0px #CCC;
 }
 p.desc{
-  padding: 0 5px 0 0;
+  padding: 0 5px 10px 0;
 }
 .subnav-item{
   background-color: #EEE;
@@ -49,8 +52,8 @@ p.desc{
   margin: 0px auto 10px auto !important;
   float: none !important;
   width: 200px;
-  padding: 10px 0;
-  box-shadow: inset 0px 0px 3px 0px #041438, 0px 0px 10px -1px #7F9EE7;
+  padding: 10px 5px;
+  box-shadow: inset 0px 0px 3px 0px #041438, 0px 0px 5px -2px #7F9EE7;
 }
 .subnav-item:hover{box-shadow: inset 0px 0px 3px 0px #041438, 0px 0px 10px -1px #CCC;}
 .subnav-item:active{box-shadow: inset 0px 0px 5px 0px #041438, 0px 0px 10px -1px #CCC;}
@@ -58,6 +61,10 @@ p.desc{
   text-decoration: none!important;
   font-size: 20px;
   text-shadow: -1px -1px #DDD, 1px 1px #999;
+}
+
+#item-table{
+  margin-top: 25px;
 }
 
 form#new-product{
@@ -81,6 +88,18 @@ button#edit-hidden-submit{
 #sub-food1:active, #sub-food2:active, #sub-food3:active{
    box-shadow: inset 0px 0px 5px 0px #041438, 0px 0px 10px -1px #CCC;
 }*/
+
+/*Product styles*/
+#product-name{
+  background: #222D46;
+  color: #BBC8E7;
+  text-shadow: -2px -2px 1px #000;
+  border-radius: 4px;
+  padding: 10px;
+  margin-top: 20px;
+}
+
+
 /*Footer*/
 .footer {
   padding: 20px 0;
