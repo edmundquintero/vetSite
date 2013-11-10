@@ -93,6 +93,7 @@ app.post('/product/:id', function(req, res) {
   if(req.body.description){
     product.description = req.body.description;
   }
+  product.type = 'product';
   vetSiteDb.updateProduct(req.param('id'), product, function(error) {
     if(error){
       res.send(500);
