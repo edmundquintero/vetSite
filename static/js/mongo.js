@@ -21,41 +21,4 @@ VetSiteDb.prototype.addProviders = function(){
   ServiceProvider = new ServiceProvider(VetSiteDb);
 };
 
-VetSiteDb.prototype.testdata = function(){
-
-    this.getServiceCollection(function(error, service_collection) {
-
-        service_collection.remove();
-
-        service_collection.save(
-                                {type: 'service',
-                                 name: 'service1',
-                                 title: '',
-                                 description: 'This is the first service we provide'
-                                },
-                                function(err, records){
-                                  console.log("Added: "+records.name);
-        });
-        service_collection.save(
-                                {type: 'service',
-                                 name: 'service2',
-                                 title: '',
-                                 description: 'This is the second service we provide'
-                                },
-                                function(err, records){
-                                  console.log("Added: "+records.name);
-        });
-        service_collection.save(
-                                {type: 'service',
-                                 name: 'service3',
-                                 title: '',
-                                 description: 'This is a third service we provide'
-                                },
-                                function(err, records){
-                                  console.log("Added: "+records.name);
-        });
-
-      });
-};
-
 exports.VetSiteDb = VetSiteDb;

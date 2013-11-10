@@ -18,8 +18,6 @@ app.use(express.bodyParser());
 // start DB
 var vetSiteDb = new VetSiteDb('localhost', 27017);
 vetSiteDb.addProviders();
-//Load test data
-vetSiteDb.testdata();
 
 // Routing
 app.get('/', function(req, res) {
@@ -28,6 +26,7 @@ app.get('/', function(req, res) {
   });
 });
 // Service Rout ----
+// retrieve single
 app.get('/service/:id', function(req, res) {
   var contents = { services:"active" };
   vetSiteDb.getServiceList( function(error,services){
@@ -38,6 +37,16 @@ app.get('/service/:id', function(req, res) {
         });
   });
 });
+// Retrieve single API
+app.get('/api/service/:id', function(req, res) {
+  var contents = { service:"active" };
+  vetSiteDb.getServiceList( function(error,services){
+        vetSiteDb.getService(req.params.id, function(error,service){
+          res.send(service);
+        });
+  });
+});
+// Retrieve list
 app.get('/service', function(req, res) {
   var contents = { services:"active" };
   vetSiteDb.getServiceList( function(error,services){
@@ -48,6 +57,50 @@ app.get('/service', function(req, res) {
         });
   });
 });
+// Create
+app.post('/service', function(req, res) {
+  var service = {};
+  if(req.body.name){
+    service.name = req.body.name;
+  }
+  if(req.body.description){
+    service.description = req.body.description;
+  }
+  service.type = 'service';
+  vetSiteDb.addService(service, function(error, record) {
+    if(error){
+      res.send(500);
+    }else{
+      console.log("Added: "+record.name+" : "+record._id );
+      res.redirect('/admin/services');
+    }
+  });
+});
+// Update
+app.post('/service/:id', function(req, res) {
+  var service = {};
+  if(req.body.name){
+    service.name = req.body.name;
+  }
+  if(req.body.description){
+    service.description = req.body.description;
+  }
+  service.type = 'service';
+  vetSiteDb.updateService(req.param('id'), service, function(error) {
+    if(error){
+      res.send(500);
+    }else{
+      res.redirect('/admin/services');
+    }
+  });
+});
+//Delete
+app.delete('/service/:id', function (req, res) {
+  vetSiteDb.deleteService(req.param('id'), function(error, object){
+    res.send({ 'id': req.param('id')});
+  });
+});
+
 // Product rout ----
 //Retrieve single
 app.get('/product/:id', function(req, res) {
