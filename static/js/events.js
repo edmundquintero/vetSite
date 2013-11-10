@@ -12,13 +12,15 @@ $(function(){
   });
 
   $('#add-new').click(function(){
-    $('#new-product').slideDown(function(){
-      window.scrollTo(0,document.body.scrollHeight);
+    $('#item-table').slideUp(function(){
+      $('#item-new').slideDown();
     });
   });
 
   $('#add-cancel').click(function(){
-    $('#new-product').slideUp();
+    $('#item-new').slideUp(function(){
+      $('#item-table').slideDown();
+    });
   });
 
   $('.edit-item').click(function(){

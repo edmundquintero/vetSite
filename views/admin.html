@@ -4,9 +4,9 @@
     <div class="tabbable tabs-left">
 
       <ul class="nav nav-tabs">
-        <li class="{{products}}"><a href="#product-tab" data-toggle="tab"><h4>Products</h4></a></li>
-        <li class="{{services}}"><a href="#tab2" data-toggle="tab"><h4><strike>Services</strike></h4></a></li>
-        <li class="{{profiles}}"><a href="#tab2" data-toggle="tab"><h4><strike>Profiles</strike></h4></a></li>
+        <li class="{{productsTab}}"><a href="/admin/products"><h4>Products</h4></a></li>
+        <li class="{{servicesTab}}"><a href="/admin/services"><h4><strike>Services</strike></h4></a></li>
+        <li class="{{profilesTab}}"><a href="#"><h4><strike>Profiles</strike></h4></a></li>
       </ul>
 
       <div class="tab-content">
@@ -40,6 +40,11 @@
             {{/if}}
             </tbody>
           </table>
+          <div class="span11">
+            <div class="row-fluid" id="new-item-button">
+              <div class="span2 offset10"><button id="add-new" type="button" class="btn btn-primary pull-right">Add New</button></div>
+            </div>
+          </div>
         </div>
 
         <!-- Edit item form -->
@@ -63,15 +68,11 @@
             </form>
           </div>
         </div>
-
-        <hr />
+        
         <!-- New Item form -->
-        <div class="row-fluid">
+        <div class="row-fluid" id="item-new">
           <div class="span12">
-            <div class="row-fluid">
-              <div class="span2 offset10"><button id="add-new" type="button" class="btn btn-primary">Add New</button></div>
-            </div>
-            <form id="new-product" action="/product" method="POST">
+            <form id="new-item" action="/product" method="POST">
               <legend>Add new</legend>
                 <label>Name</label>
                 <input type="text" name="name" placeholder="New..." required>

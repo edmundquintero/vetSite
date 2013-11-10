@@ -151,13 +151,28 @@ app.get('/contact', function(req, res) {
 app.get('/admin', function(req, res) {
   res.redirect('/admin/products');
 });
+
 app.get('/admin/:type', function(req, res) {
-  var contents = { admin:"active" };
-   vetSiteDb.getProductList( function(error,products){
-        contents.items = products;
-        contents.products = "active";
-        res.render('admin', contents);
-  });
+  var type = req.param('type');
+  switch(type){
+    case 'services':
+      var contents = { admin:"active",
+                       servicesTab: "active"
+                     };
+        vetSiteDb.getServiceList( function(error,services){
+          contents.items = services;
+          res.render('admin', contents);
+        });
+      break;
+    default:
+      var contents = { admin:"active",
+                       productsTab: "active"
+                     };
+        vetSiteDb.getProductList( function(error,products){
+          contents.items = products;
+          res.render('admin', contents);
+        });
+  }
 });
 
 // Start Server

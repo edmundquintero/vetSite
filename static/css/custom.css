@@ -67,12 +67,10 @@ p.desc{
   margin-top: 25px;
 }
 
-form#new-product{
+#item-new, #product-edit{
   display: none;
 }
-#product-edit{
-  display: none;
-}
+
 button#edit-hidden-submit{
  display: none;
 }
