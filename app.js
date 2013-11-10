@@ -117,7 +117,7 @@ app.post('/product', function(req, res) {
       res.send(500);
     }else{
       console.log("Added: "+record.name+" : "+record._id );
-      res.redirect('/admin');
+      res.redirect('/admin/products');
     }
   });
 });

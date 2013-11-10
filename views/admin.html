@@ -28,8 +28,8 @@
                   <td class="span2">{{name}}</td>
                   <td class="span8">{{description}}</td>
                   <td class="span2">
-                    <button class="btn btn-primary btn-small edit-item" ref="{{type}}/{{_id}}">EDIT </button>
-                    <button class="btn btn-danger btn-small delete-item pull-right" ref="{{type}}/{{_id}}">DELETE</button>
+                    <button class="btn btn-primary btn-small edit-item" ref="/{{type}}/{{_id}}">EDIT </button>
+                    <button class="btn btn-danger btn-small delete-item pull-right" ref="/{{type}}/{{_id}}">DELETE</button>
                   </td>
                 </tr>
               {{/each}}
@@ -48,9 +48,9 @@
         </div>
 
         <!-- Edit item form -->
-        <div class="row-fluid" id="product-edit">
+        <div class="row-fluid" id="item-edit">
           <div class="span12">
-            <form id="edit-product" action="/product" method="POST">
+            <form id="edit-item" action="" method="POST">
               <legend>Edit existing</legend>
                 <label>Name</label>
                 <input type="text" name="name" placeholder="Existing..." required>
@@ -60,6 +60,7 @@
                 <span class="help-block">The description to be displayed.</span>
 
                 <input type="hidden" name="id" required>
+                <input type="hidden" name="type" required>
                 <div class="form-actions">
                   <button id="edit-submit" type="button" class="btn btn-success">Save</button>
                   <button id="edit-cancel" type="button" class="btn">Cancel</button>
@@ -68,11 +69,19 @@
             </form>
           </div>
         </div>
-        
+
         <!-- New Item form -->
         <div class="row-fluid" id="item-new">
           <div class="span12">
-            <form id="new-item" action="/product" method="POST">
+            {{#if servicesTab}}
+              <form id="new-item" action="/service" method="POST">
+            {{ else }}
+              {{#if profilesTab}}
+                <form id="new-item" action="/profile" method="POST">
+              {{else}}
+                <form id="new-item" action="/product" method="POST">
+              {{/if}}
+            {{/if}}
               <legend>Add new</legend>
                 <label>Name</label>
                 <input type="text" name="name" placeholder="New..." required>
