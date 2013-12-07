@@ -247,28 +247,41 @@ app.get('/logout', function(req, res) {
 
 // Admin routs
 app.get('/admin', function(req, res) {
-  res.redirect('/admin/products');
+  if(req.session.username && req.session.password ){
+    if(req.session.username =='admin' && req.session.password == 'admin'){
+       res.redirect('/admin/products');
+    }
+  } else{
+    res.redirect('/login');
+  }
 });
 
 app.get('/admin/:type', function(req, res) {
-  var contents = {admin:"active",
-                  session: req.session
-  };
-  var type = req.param('type');
-  switch(type){
-    case 'services':
-      contents.servicesTab = "active";
-      vetSiteDb.getServiceList( function(error,services){
-        contents.items = services;
-        res.render('admin', contents);
-      });
-      break;
-    default:
-      contents.productsTab = "active";
-      vetSiteDb.getProductList( function(error,products){
-        contents.items = products;
-        res.render('admin', contents);
-      });
+
+  if(req.session.username && req.session.password ){
+    if(req.session.username =='admin' && req.session.password == 'admin'){
+      var contents = {admin:"active",
+                      session: req.session
+      };
+      var type = req.param('type');
+      switch(type){
+        case 'services':
+          contents.servicesTab = "active";
+          vetSiteDb.getServiceList( function(error,services){
+            contents.items = services;
+            res.render('admin', contents);
+          });
+          break;
+        default:
+          contents.productsTab = "active";
+          vetSiteDb.getProductList( function(error,products){
+            contents.items = products;
+            res.render('admin', contents);
+          });
+      }
+    }
+  } else{
+    res.redirect('/login');
   }
 });
 

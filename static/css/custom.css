@@ -88,15 +88,21 @@ button#edit-hidden-submit{
 }*/
 
 /*Product styles*/
-#product-name{
-  background: #222D46;
-  color: #BBC8E7;
-  text-shadow: -2px -2px 1px #000;
-  border-radius: 4px;
+#product-name, #service-name{
+  color: #222D46;
   padding: 10px;
   margin-top: 20px;
 }
-
+#product-description img, #service-description img{
+  float: right;
+  margin-left: 10px;
+  height: 300px;
+  width: 300px;
+  box-shadow: 2px 5px 10px 0px #666;
+  border-radius: 3px;
+  border: 1px solid #666;
+  padding: 3px;
+}
 
 /*Footer*/
 .footer {
