@@ -52,7 +52,12 @@
               </ul>
               <!-- Login navigation -->
               <ul class="nav pull-right">
-                <li class="{{admin}}"><a href="/admin">Admin</a></li>
+                {{#if session.username}}
+                <li><span class="navbar-text"> Welcome {{session.username}}!<span></li>
+                <li class=""><a href="/logout">Logout</a></li>
+                {{else}}
+                <li class="{{admin}}"><a href="/login">Login</a></li>
+                {{/if}}
               </ul>
             </div>
           </div>

@@ -19,16 +19,23 @@ app.use(express.bodyParser());
 var vetSiteDb = new VetSiteDb('localhost', 27017);
 vetSiteDb.addProviders();
 
+// Add session to requests
+app.use( express.cookieParser() );
+app.use(express.session({secret: '00780ndJ@m3s80nd'}));
+
 // Routing
 app.get('/', function(req, res) {
   res.render('index',{
- 		home:"active"
+ 		home:"active",
+    session: req.session
   });
 });
 // Service Rout ----
 // retrieve single
 app.get('/service/:id', function(req, res) {
-  var contents = { services:"active" };
+  var contents = { services:"active",
+                    session: req.session
+   };
   vetSiteDb.getServiceList( function(error,services){
         contents.sidebar = services;
         vetSiteDb.getService(req.params.id, function(error,service){
@@ -48,7 +55,9 @@ app.get('/api/service/:id', function(req, res) {
 });
 // Retrieve list
 app.get('/service', function(req, res) {
-  var contents = { services:"active" };
+  var contents = { services:"active",
+                  session: req.session
+   };
   vetSiteDb.getServiceList( function(error,services){
         contents.sidebar = services;
         vetSiteDb.getService(services[0]._id, function(error,service){
@@ -104,7 +113,9 @@ app.delete('/service/:id', function (req, res) {
 // Product rout ----
 //Retrieve single
 app.get('/product/:id', function(req, res) {
-  var contents = { products:"active" };
+  var contents = { products:"active",
+                   session: req.session,
+  };
   vetSiteDb.getProductList( function(error,products){
         contents.sidebar = products;
         contents.sideName = "Products";
@@ -126,7 +137,9 @@ app.get('/api/product/:id', function(req, res) {
 });
 // Retrieve List
 app.get('/product', function(req, res) {
-  var contents = { products:"active" };
+  var contents = { products:"active",
+                   session: req.session
+  };
 	vetSiteDb.getProductList( function(error,products){
 				contents.sidebar = products;
         contents.sideName = "Products";
@@ -186,6 +199,7 @@ app.delete('/product/:id', function (req, res) {
 app.get('/whoweare', function(req, res) {
    res.render('whoweare',{
    				whoweare:"active",
+          session: req.session,
 					sidebar:[
 						{ name:"profile1", title:"profile1" },
 						{ name:"profile2", title:"profile2" },
@@ -195,36 +209,66 @@ app.get('/whoweare', function(req, res) {
 app.get('/contact', function(req, res) {
    res.render('contact',{
   				contact:"active",
+          session: req.session,
 					sidebar:[
 						{ name:"info1", title:"info1" },
 						{ name:"info2", title:"info2" },
 						{ name:"info3", title:"info3" }]
 					});
 });
+
+// Login/Logout routs
+app.get('/login', function(req, res) {
+  var errors = {};
+  if(req.session.username && req.session.password ){
+    if(req.session.username =='admin' && req.session.password == 'admin'){
+      res.redirect('/admin');
+    } else{
+    errors={msg:'This account does not have permission to edit this page!'}
+    }
+  }
+  res.render('login', errors);
+});
+app.post('/login', function(req, res) {
+  var errors = {};
+  if(req.param('username') == 'admin' && req.param('password') == 'admin'){
+    req.session.username = req.param('username');
+    req.session.password = req.param('password');
+    res.redirect('/admin');
+  }else{
+    errors={msg:'Username/Password did not match!'}
+  }
+  res.render('login', errors);
+});
+app.get('/logout', function(req, res) {
+  req.session.destroy();
+  res.redirect('/');
+});
+
+// Admin routs
 app.get('/admin', function(req, res) {
   res.redirect('/admin/products');
 });
 
 app.get('/admin/:type', function(req, res) {
+  var contents = {admin:"active",
+                  session: req.session
+  };
   var type = req.param('type');
   switch(type){
     case 'services':
-      var contents = { admin:"active",
-                       servicesTab: "active"
-                     };
-        vetSiteDb.getServiceList( function(error,services){
-          contents.items = services;
-          res.render('admin', contents);
-        });
+      contents.servicesTab = "active";
+      vetSiteDb.getServiceList( function(error,services){
+        contents.items = services;
+        res.render('admin', contents);
+      });
       break;
     default:
-      var contents = { admin:"active",
-                       productsTab: "active"
-                     };
-        vetSiteDb.getProductList( function(error,products){
-          contents.items = products;
-          res.render('admin', contents);
-        });
+      contents.productsTab = "active";
+      vetSiteDb.getProductList( function(error,products){
+        contents.items = products;
+        res.render('admin', contents);
+      });
   }
 });
 
